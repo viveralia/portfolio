@@ -1,0 +1,28 @@
+---
+import Button from '../components/Button.astro'
+import { socialLinks } from '../constants'
+
+const contactLink = socialLinks.find(link => link.name === 'LinkedIn')!
+---
+<header class="container">
+  <h1 class="brand">Iván Viveros</h1>
+  <Button target="_blank" href={contactLink.path}>Get in touch</Button>
+</header>
+
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+  }
+  .brand {
+    font-family: var(--base-font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--loud-color);
+    user-select: none;
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+import { SEO } from 'astro-seo'
+
+import FeaturedProjects from '../components/FeaturedProjects.astro'
+import Hero from '../components/Hero.astro'
+import Layout from '../layouts/Layout.astro'
+import { getUserDataAndPinnedRepos } from '../repositories'
+import { seo } from '../constants'
+
+const { user } = await getUserDataAndPinnedRepos('viveralia')
+---
+
+<Layout>
+	<SEO {...seo} />
+	<Hero company={user.company} />
+	<FeaturedProjects projects={user.projects} total={user.totalProjects} />
+</Layout>

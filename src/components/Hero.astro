@@ -1,0 +1,97 @@
+---
+interface Props {
+  company?: string
+}
+
+const { company } = Astro.props
+---
+
+<section class="container">
+  <p class="greeting">🤝 Nice to meet you</p>
+  <h1 class="bio">
+    <span class="black">I’m Iván, a </span>
+    <strong class="loud">software engineer</strong><span class="black">, mainly focused on </span>
+    <strong class="loud">frontend</strong>
+    <span class="black"> who loves crafting and delivering </span>
+    <strong class="loud">delightful digital experiences</strong><span class="black">.</span>
+  </h1>
+  {company && <p class="working-at">Currently working at: <span class="company">{company}</span></p>}
+</section>
+
+<style>
+  .container {
+    padding: 2rem 1rem;
+    max-width: var(--max-width);
+    margin: auto;
+  }
+  .greeting {
+    font-family: var(--contrast-font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--muted-color);
+    margin-bottom: 0.5rem;
+  }
+  .bio {
+    font-family: var(--base-font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.5;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .black {
+    background: linear-gradient(0deg, var(--loud-color), var(--loud-color)), linear-gradient(90.42deg, #EB0E78 -1.62%, #FD880D 100.99%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .loud {
+    font-weight: 600;
+  }
+  .working-at {
+    margin-top: 0.25rem;
+    font-family: var(--contrast-font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--muted-color);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .working-at::before {
+    content: '';
+    display: block;
+    background-color: #17b730;
+    border-radius: 50%;
+    width: 0.275rem;
+    height: 0.275rem;
+    animation: blink-animation 1s infinite;
+    -webkit-animation: blink-animation 1s infinite;
+  }
+  @keyframes blink-animation {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .company {
+    color: var(--semi-muted-color);
+  }
+  @media (min-width: 760px) {
+    .greeting, .company {
+      font-size: 0.75rem;
+    }
+    .bio {
+      font-size: 2rem;
+    }
+  }
+</style>

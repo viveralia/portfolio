@@ -1,0 +1,61 @@
+---
+import '@fontsource/cousine/400.css'
+import '@fontsource/heebo/400.css'
+import '@fontsource/heebo/500.css'
+import '@fontsource/heebo/600.css'
+
+import Header from './Header.astro'
+import Footer from './Footer.astro'
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --background-color: #ffffff;
+    --loud-color: #333333;
+    --semi-muted-color: #555555;
+    --muted-color: #888888;
+    --base-font-family: 'Heebo', -apple-system, sans-serif;
+    --contrast-font-family: 'Cousine', serif;
+    --max-width: 1080px;
+    --gradient: linear-gradient(90.42deg, #EB0E78 -1.62%, #FD880D 100.99%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background-color: #333333;
+      --loud-color: #ffffff;
+      --semi-muted-color: #cccccc;
+      --muted-color: #999999;
+    }
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 16px;
+  }
+  body {
+    background-color: var(--background-color);
+  }
+  @media(min-width: 760px) {
+    html {
+      font-size: 18px;
+    }
+  }
+</style>

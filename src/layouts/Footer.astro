@@ -1,0 +1,56 @@
+---
+import { socialLinks } from '../constants'
+---
+
+<footer class="container">
+  <h4 class="brand">Iván Viveros</h4>
+  <nav>
+    <ul class="links">
+      {socialLinks.map(socialLink => (
+        <li>
+          <a class="link" target="_blank" href={socialLink.path}>{socialLink.name}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</footer>
+
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+  .brand {
+    font-family: var(--base-font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.825rem;
+    line-height: 1.5rem;
+    color: var(--semi-muted-color);
+    user-select: none;
+  }
+  .links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  .link {
+    color: var(--semi-muted-color);
+    font-family: var(--contrast-font-family);
+    font-size: 0.825rem;
+    text-decoration: none !important;
+  }
+  .links > li::after {
+    content: '/';
+    padding: 0 1rem;
+    color: var(--semi-muted-color);
+    font-family: var(--contrast-font-family);
+    font-size: 0.825rem;
+  }
+  .links > li:last-child::after {
+    display: none;
+  }
+</style>
