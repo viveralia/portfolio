@@ -1,17 +1,29 @@
 ---
-import { SEO } from 'astro-seo'
+import { SEO } from "astro-seo";
 
-import FeaturedProjects from '../components/FeaturedProjects.astro'
-import Hero from '../components/Hero.astro'
-import Layout from '../layouts/Layout.astro'
-import { getUserDataAndPinnedRepos } from '../repositories'
-import { seo } from '../constants'
+import FeaturedProjects from "../components/FeaturedProjects.astro";
+import Hero from "../components/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+import { getUserDataAndPinnedRepos } from "../repositories";
+import { seo } from "../constants";
+import { privateProjects } from "../constants/private-projects.constants";
+import Companies from "../components/Companies.astro";
+import { companies } from "../constants/companies.constants";
+import { tools } from "../constants/tools.constants";
 
-const { user } = await getUserDataAndPinnedRepos('viveralia')
+const { user } = await getUserDataAndPinnedRepos("viveralia");
 ---
 
 <Layout>
-	<SEO {...seo} />
-	<Hero company={user.company} />
-	<FeaturedProjects projects={user.projects} total={user.totalProjects} />
+  <SEO {...seo} />
+  <Hero tools={tools} />
+  <Companies companies={companies} />
+  <FeaturedProjects
+    projects={[
+      ...privateProjects,
+      ...user.projects.filter(
+        (project) => project.name.toLowerCase() !== "portfolio"
+      ),
+    ]}
+  />
 </Layout>

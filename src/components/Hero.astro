@@ -1,21 +1,45 @@
 ---
+import type { Tool } from "../constants/tools.constants";
+
 interface Props {
-  company?: string
+  company?: string;
+  tools: Tool[];
 }
 
-const { company } = Astro.props
+const { company, tools } = Astro.props;
 ---
 
 <section class="container">
-  <p class="greeting">🤝 Nice to meet you</p>
+  <p class="greeting">Hello there 👋</p>
   <h1 class="bio">
-    <span class="black">I’m Iván, a </span>
-    <strong class="loud">software engineer</strong><span class="black">, mainly focused on </span>
-    <strong class="loud">frontend</strong>
-    <span class="black"> who loves crafting and delivering </span>
-    <strong class="loud">delightful digital experiences</strong><span class="black">.</span>
+    <span class="black">I'm Iván, a </span>
+    <strong class="loud">Sr. Frontend Developer </strong>
+    <span class="black">with </span>
+    <strong class="loud">over 6 years of experience</strong><span class="black"
+      >, specializing in Next.js and React Native with a proven track record in
+    </span>
+    <strong class="loud">leading teams </strong>
+    <span class="black">and </span>
+    <strong class="loud"
+      >delivering high-quality web and mobile applications</strong
+    ><span class="black">.</span>
   </h1>
-  {company && <p class="working-at">Currently working at: <span class="company">{company}</span></p>}
+  <p class="tools">
+    Mainly using: {
+      tools.map((tool) => (
+        <code title={tool.name} class="code">
+          {tool.extension}
+        </code>
+      ))
+    }
+  </p>
+  {
+    company && (
+      <p class="working-at">
+        Currently working at: <span class="company">{company}</span>
+      </p>
+    )
+  }
 </section>
 
 <style>
@@ -45,7 +69,8 @@ const { company } = Astro.props
     text-fill-color: transparent;
   }
   .black {
-    background: linear-gradient(0deg, var(--loud-color), var(--loud-color)), linear-gradient(90.42deg, #EB0E78 -1.62%, #FD880D 100.99%);
+    background: linear-gradient(0deg, var(--loud-color), var(--loud-color)),
+      linear-gradient(90.42deg, #eb0e78 -1.62%, #fd880d 100.99%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -54,6 +79,31 @@ const { company } = Astro.props
   .loud {
     font-weight: 600;
   }
+
+  .tools {
+    font-family: var(--contrast-font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--muted-color);
+    margin: auto;
+    margin-top: 1rem;
+    text-align: left;
+  }
+
+  .code {
+    background-color: var(--semi-muted-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--background-color);
+    user-select: none;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 0.125rem;
+    margin-right: 0.125rem;
+    font-weight: 600;
+  }
+
   .working-at {
     margin-top: 0.25rem;
     font-family: var(--contrast-font-family);
@@ -66,7 +116,7 @@ const { company } = Astro.props
     align-items: center;
   }
   .working-at::before {
-    content: '';
+    content: "";
     display: block;
     background-color: #17b730;
     border-radius: 50%;
@@ -87,7 +137,8 @@ const { company } = Astro.props
     color: var(--semi-muted-color);
   }
   @media (min-width: 760px) {
-    .greeting, .company {
+    .greeting,
+    .company {
       font-size: 0.75rem;
     }
     .bio {

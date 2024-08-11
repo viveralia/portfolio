@@ -1,9 +1,9 @@
-export interface Project {
-  name: string
-  description: string
-  website: string
-  repoUrl: string
+export type Project = {
+  name: string;
+  description: string;
+  website: string;
+  repoUrl: string | null;
   topics: {
-    name: string
-  }[]
-}
+    name: string;
+  }[];
+};
