@@ -1,42 +1,50 @@
 ---
-import '@fontsource/cousine/400.css'
-import '@fontsource/heebo/400.css'
-import '@fontsource/heebo/500.css'
-import '@fontsource/heebo/600.css'
+import "@fontsource/cousine/400.css";
+import "@fontsource/heebo/400.css";
+import "@fontsource/heebo/500.css";
+import "@fontsource/heebo/600.css";
 
-import Header from './Header.astro'
-import Footer from './Footer.astro'
+import { SEO } from "astro-seo";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import { seo } from "../constants";
+import AppearOnScrollScript from "../components/AppearOnScrollScript.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO {...seo} />
   </head>
   <body>
     <Header />
     <slot />
     <Footer />
+    <AppearOnScrollScript />
   </body>
 </html>
 
 <style is:global>
   :root {
     --background-color: #ffffff;
-    --loud-color: #333333;
-    --semi-muted-color: #555555;
-    --muted-color: #888888;
-    --base-font-family: 'Heebo', -apple-system, sans-serif;
-    --contrast-font-family: 'Cousine', serif;
+    --loud-color: #222222;
+    --semi-muted-color: #444444;
+    --muted-color: #666666;
+    --base-font-family: "Heebo", -apple-system, sans-serif;
+    --contrast-font-family: "Cousine", serif;
     --max-width: 1080px;
-    --gradient: linear-gradient(90.42deg, #EB0E78 -1.62%, #FD880D 100.99%);
+    --gradient: linear-gradient(90.42deg, #a8f05b -1.62%, #329d01 100.99%);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --background-color: #333333;
+      --background-color: #07071d;
       --loud-color: #ffffff;
       --semi-muted-color: #cccccc;
       --muted-color: #999999;
@@ -53,7 +61,7 @@ import Footer from './Footer.astro'
   body {
     background-color: var(--background-color);
   }
-  @media(min-width: 760px) {
+  @media (min-width: 760px) {
     html {
       font-size: 18px;
     }

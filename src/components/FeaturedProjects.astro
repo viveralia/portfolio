@@ -1,59 +1,48 @@
 ---
-import type { Project } from '../models'
-import ProjectCard from './ProjectCard.astro'
+import type { Project } from "../models";
+import ProjectCard from "./ProjectCard.astro";
+
+type ProjectWithBg = Project & { background?: "light" | "auto" };
 
 interface Props {
-  projects: Project[]
-  total: number
+  projects: ProjectWithBg[];
 }
 
-const { projects, total } = Astro.props
+const { projects } = Astro.props;
 ---
 
-<section>
-  <h2 class="title">Some featured projects I've been working on:</h2>
+<section class="container">
+  <h2 class="title">And here are a few other projects I've worked on:</h2>
   <div class="grid">
-    {projects.map(project => <ProjectCard project={project} />)}
+    {
+      projects.map(({ background, ...project }) => (
+        <ProjectCard project={project} background={background} />
+      ))
+    }
   </div>
 </section>
 
-<style define:vars={{ total }}>
+<style>
+  .container {
+    padding: 2rem 1rem;
+    max-width: 76rem;
+    margin: auto;
+    width: 100%;
+  }
+
   .title {
     font-family: var(--contrast-font-family);
     font-style: normal;
     font-weight: 400;
     font-size: 0.75rem;
     color: var(--muted-color);
-    padding: 2rem 1rem 1rem;
-    max-width: var(--max-width);
     margin: auto;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
   .grid {
     display: grid;
-    padding: 0 1rem;
-    padding-bottom: 1.5rem;
-    grid-template-columns: repeat(var(--total), calc(100vw - 4.5rem));
-    gap: 1rem;
-    overflow-x: scroll;
-    overflow: auto;
-    white-space: nowrap;
-    max-width: var(--max-width);
-    margin: auto;
-  }
-  @media (min-width: 760px) {
-    .grid {
-      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-      overflow-x: initial;
-      overflow: initial;
-      white-space: initial;
-      gap: 2rem;
-    }
-  }
-  @media (min-width: 992px) {
-    .grid {
-      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-      gap: 2rem;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 3rem;
   }
 </style>

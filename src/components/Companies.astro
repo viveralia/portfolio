@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import type { Company } from "../models";
+
+interface Props {
+  companies: Company[];
+}
+
+const { companies } = Astro.props;
+---
+
+<section class="container">
+  <h2 class="title">
+    I've been building and maintaining products at these amazing startups:
+  </h2>
+  <div class="companies">
+    {
+      companies.map((company) => (
+        <a title={company.name} href={company.url} target="_blank">
+          <Image
+            loading="eager"
+            class={[
+              "logo",
+              // HOTFIX to even out logo sizes
+              company.name.toLowerCase() === "yana" ? "bigger" : "",
+            ].join(" ")}
+            src={company.logo}
+            alt={company.name}
+          />
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style scoped lang="scss">
+  .container {
+    padding: 0 1rem 2rem;
+    max-width: var(--max-width);
+    margin: auto;
+    width: 100%;
+
+    .title {
+      font-family: var(--contrast-font-family);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: var(--muted-color);
+      padding: 2rem 1rem 1rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      line-height: 1.75;
+    }
+  }
+  .companies {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+
+    .logo {
+      height: 18px;
+      width: auto;
+      filter: brightness(0) grayscale(1);
+      opacity: 0.75;
+
+      &.bigger {
+        height: 24px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        filter: brightness(0) grayscale(1) invert(1);
+      }
+
+      @media (min-width: 760px) {
+        height: 28px;
+
+        &.bigger {
+          height: 36px;
+        }
+      }
+    }
+  }
+</style>

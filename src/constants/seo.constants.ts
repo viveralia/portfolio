@@ -1,24 +1,26 @@
-import type { Props } from 'astro-seo'
+import type { SEOProps } from "astro-seo";
 
-export const seo: Props = {
-  title: 'Iván Viveros | Frontend Software Engineer',
-  description: 'I’m Iván, a software engineer, mainly focused on frontend. Click to take a look at my most recent projects.',
+export const seo: SEOProps = {
+  title: "Iván Viveros - Sr. Frontend / Tech Lead | Portfolio",
+  description:
+    "I’m Iván, a software engineer, mainly focused on frontend. Click to take a look at my most recent projects.",
   openGraph: {
     basic: {
-      title: 'Portfolio | Iván Viveros',
-      type: 'website',
-      image: '/opengraph.png',
-      url: 'https://viveralia.com',
+      title: "Iván Viveros - Sr. Frontend / Tech Lead | Portfolio",
+      type: "website",
+      image: "/opengraph.png",
+      url: "https://viveralia.com",
     },
     optional: {
-      description: 'I’m Iván, a software engineer, mainly focused on frontend. Click to take a look at my most recent projects.',
-      locale: 'en-MX',
+      description:
+        "I’m Iván, a software engineer, mainly focused on frontend. Click to take a look at my most recent projects.",
+      locale: "en-MX",
     },
     image: {
       type: "image/png",
       width: 1200,
       height: 630,
-      alt: 'Image showcasing my three most relevant projects: Eliss, Twenty First and Positiva',
-    }
-  }
-}
+      alt: "Image showcasing my three most relevant projects: Necta, Colorista and many more.",
+    },
+  },
+};
