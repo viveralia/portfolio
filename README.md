@@ -6,7 +6,7 @@ A modern redesigned portfolio showcasing my best projects saved on GitHub.
 
 The portfolio is built using [Astro](https://astro.build/) with SSR routes using **GitHub as a CMS**.
 
-![Screenshot of the above the fold of my portfolio](https://i.ibb.co/HHcKyt2/Screenshot-2022-12-06-at-13-01-10.png)
+![Screenshot of the above the fold of my portfolio](https://i.ibb.co/TY65SF6/localhost-4321.png)
 
 This is done by querying my profile information and pinned repos via the [GitHub GraphQL API](https://docs.github.com/en/graphql). So, whenever a chage is made on GitHub, it will inmediatly be displayed on the portfolio. It is all automated and there is no need to duplicate the same information over and over again!
 

@@ -1,11 +1,8 @@
 ---
-import { SEO } from "astro-seo";
-
 import FeaturedProjects from "../components/FeaturedProjects.astro";
 import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import { getUserDataAndPinnedRepos } from "../repositories";
-import { seo } from "../constants";
 import { privateProjects } from "../constants/private-projects.constants";
 import Companies from "../components/Companies.astro";
 import { companies } from "../constants/companies.constants";
@@ -15,15 +12,22 @@ const { user } = await getUserDataAndPinnedRepos("viveralia");
 ---
 
 <Layout>
-  <SEO {...seo} />
   <Hero tools={tools} />
   <Companies companies={companies} />
   <FeaturedProjects
     projects={[
       ...privateProjects,
-      ...user.projects.filter(
-        (project) => project.name.toLowerCase() !== "portfolio"
-      ),
+      ...user.projects
+        .filter((project) => project.name.toLowerCase() !== "portfolio")
+        .map((project) => ({
+          ...project,
+          // HOTFIX to hardcode light background for some projects
+          background: ["twentyfirst", "positiva"].includes(
+            project.name.toLowerCase()
+          )
+            ? "light"
+            : "auto",
+        })),
     ]}
   />
 </Layout>

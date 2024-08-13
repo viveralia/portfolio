@@ -1,21 +1,56 @@
 ---
-import Button from '../components/Button.astro'
-import { socialLinks } from '../constants'
+import Button from "../components/Button.astro";
+import { socialLinks } from "../constants";
 
-const contactLink = socialLinks.find(link => link.name === 'LinkedIn')!
+const contactLink = socialLinks.find((link) => link.name === "LinkedIn")!;
 ---
+
 <header class="container">
-  <h1 class="brand">Iván Viveros</h1>
-  <Button target="_blank" href={contactLink.path}>Get in touch</Button>
+  <div class="blurry">
+    <h1 class="brand">
+      <span class="emoji" aria-label="Leaf">🌱</span> Iván Viveros
+    </h1>
+    <Button target="_blank" href={contactLink.path} highlight
+      >Get in touch</Button
+    >
+  </div>
 </header>
 
 <style>
   .container {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .emoji {
+    display: inline-block;
+    margin-right: 0.25rem;
+  }
+
+  .blurry {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 0.75rem 1rem;
+    max-width: var(--max-width);
+    margin: 1rem auto;
+    border-radius: 2rem;
+    border: 1px solid #eee;
+    background-color: rgba(255, 255, 255, 0.375);
+    position: relative;
+
+    @media (prefers-color-scheme: dark) {
+      border: 1px solid rgba(255, 255, 255, 0.175);
+      background-color: rgba(7, 7, 29, 0.375);
+    }
   }
+
   .brand {
     font-family: var(--base-font-family);
     font-style: normal;

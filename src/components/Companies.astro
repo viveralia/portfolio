@@ -18,8 +18,10 @@ const { companies } = Astro.props;
       companies.map((company) => (
         <a title={company.name} href={company.url} target="_blank">
           <Image
+            loading="eager"
             class={[
               "logo",
+              // HOTFIX to even out logo sizes
               company.name.toLowerCase() === "yana" ? "bigger" : "",
             ].join(" ")}
             src={company.logo}

@@ -6,19 +6,21 @@ interface Props {
   iconName: string;
   title: string;
   href: string | null | undefined;
+  disabled?: boolean;
 }
 
-const { target, iconName, title, href } = Astro.props;
+const { target, iconName, title, href, disabled } = Astro.props;
+const Component = href ? "a" : "div";
 ---
 
-<a
-  class={["button", !href ? "disabled" : ""].join(" ")}
+<Component
+  class={["button", disabled ? "disabled" : ""].join(" ")}
   target={target}
   title={title}
   href={href}
 >
   <Icon name={iconName} />
-</a>
+</Component>
 
 <style lang="scss">
   .button {
